@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Perfume Mixer – Create Your Signature Scent</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="Perfume Mixer helps you experiment with fragrance notes, design custom blends, and save your favorite perfume recipes."
+  />
+  <meta name="author" content="Scholarship" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      line-height: 1.6;
+      background: #0f172a;
+      color: #e5e7eb;
+    }
+    a {
+      color: #38bdf8;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    header {
+      padding: 24px 20px;
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .tag {
+      font-size: 0.8rem;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(148, 163, 184, 0.18);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+    }
+    main {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 10px 20px 40px;
+    }
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.2fr);
+      gap: 32px;
+      align-items: center;
+      margin-top: 10px;
+    }
+    .hero-title {
+      font-size: clamp(2rem, 3vw + 1rem, 2.6rem);
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .hero-subtitle {
+      font-size: 0.98rem;
+      color: #cbd5f5;
+      max-width: 32rem;
+      margin-bottom: 18px;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.7);
+      font-size: 0.8rem;
+      margin-bottom: 16px;
+    }
+    .pill-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+    }
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 8px;
+      align-items: center;
+    }
+    .btn-primary {
+      border: none;
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      background: linear-gradient(135deg, #22c55e, #0ea5e9);
+      color: #020617;
+      box-shadow: 0 10px 35px rgba(15, 118, 110, 0.45);
+    }
+    .btn-outline {
+      border-radius: 999px;
+      padding: 9px 16px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      font-size: 0.9rem;
+      background: transparent;
+      color: #e5e7eb;
+      cursor: pointer;
+    }
+    .meta-note {
+      font-size: 0.78rem;
+      color: #9ca3af;
+      margin-top: 6px;
+    }
+    .card {
+      border-radius: 22px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      background: radial-gradient(circle at top left, #1e293b, #020617);
+      padding: 18px 18px 16px;
+      box-shadow: 0 18px 60px rgba(15, 23, 42, 0.88);
+      position: relative;
+      overflow: hidden;
+    }
+    .card-badge {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      font-size: 0.7rem;
+      padding: 5px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(248, 250, 252, 0.15);
+      background: rgba(15, 23, 42, 0.75);
+      color: #e5e7eb;
+    }
+    .card-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .card-sub {
+      font-size: 0.8rem;
+      color: #9ca3af;
+      margin-bottom: 12px;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .mini {
+      font-size: 0.76rem;
+      padding: 8px 9px;
+      border-radius: 14px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      background: rgba(15, 23, 42, 0.8);
+    }
+    .mini span {
+      display: block;
+    }
+    .mini-label {
+      color: #9ca3af;
+      margin-bottom: 2px;
+      font-size: 0.72rem;
+    }
+    .mini-value {
+      font-weight: 500;
+    }
+    .section {
+      margin-top: 40px;
+    }
+    .section h2 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+    .section p {
+      font-size: 0.95rem;
+      color: #cbd5f5;
+      max-width: 40rem;
+    }
+    .feature-grid {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+    }
+    .feature {
+      padding: 14px 14px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      background: rgba(15, 23, 42, 0.8);
+      font-size: 0.88rem;
+    }
+    footer {
+      border-top: 1px solid rgba(30, 64, 175, 0.6);
+      margin-top: 40px;
+      padding: 16px 20px 24px;
+      font-size: 0.8rem;
+      color: #9ca3af;
+      text-align: center;
+    }
+    footer a {
+      font-size: 0.8rem;
+    }
+    @media (max-width: 720px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">Perfume Mixer</div>
+    <div class="tag">by Scholarship</div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <div class="pill">
+          <span class="pill-dot"></span>
+          <span>Design your own signature scent</span>
+        </div>
+        <h1 class="hero-title">Blend perfumes like a pro, right from your phone.</h1>
+        <p class="hero-subtitle">
+          Perfume Mixer helps you combine fragrance notes, experiment with new blends,
+          and save your favorite recipes so you can recreate them anytime.
+        </p>
+
+        <div class="cta-row">
+          <button class="btn-primary">
+            Get Perfume Mixer
+          </button>
+          <a href="#features" class="btn-outline">View features</a>
+        </div>
+        <p class="meta-note">
+          Developer: Scholarship · Contact: 
+          <a href="mailto:SUJITH81159@GMAIL.COM">SUJITH81159@GMAIL.COM</a>
+        </p>
+      </div>
+
+      <aside class="card" aria-label="Perfume Mixer preview">
+        <div class="card-badge">Sample blend</div>
+        <div class="card-title">Custom fragrance idea</div>
+        <div class="card-sub">
+          A warm everyday perfume combining floral, citrus and woody notes.
+        </div>
+
+        <div class="grid-2">
+          <div class="mini">
+            <span class="mini-label">Top notes</span>
+            <span class="mini-value">Bergamot · Lemon</span>
+          </div>
+          <div class="mini">
+            <span class="mini-label">Heart notes</span>
+            <span class="mini-value">Rose · Jasmine</span>
+          </div>
+          <div class="mini">
+            <span class="mini-label">Base notes</span>
+            <span class="mini-value">Cedarwood · Musk</span>
+          </div>
+          <div class="mini">
+            <span class="mini-label">Blend ratio</span>
+            <span class="mini-value">20% · 40% · 40%</span>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="section" id="features">
+      <h2>What you can do with Perfume Mixer</h2>
+      <p>
+        Whether you are a beginner or a fragrance enthusiast, Perfume Mixer
+        makes it simple to explore new combinations and keep track of your ideas.
+      </p>
+
+      <div class="feature-grid">
+        <article class="feature">
+          <strong>Create custom blends</strong><br />
+          Pick fragrance families, notes and approximate ratios to design your own perfumes.
+        </article>
+
+        <article class="feature">
+          <strong>Save your recipes</strong><br />
+          Store and organize your favorite blends so you can recreate them later.
+        </article>
+
+        <article class="feature">
+          <strong>Experiment safely</strong><br />
+          Use the app as a planning tool before mixing real oils and ingredients.
+        </article>
+
+        <article class="feature">
+          <strong>Works offline</strong><br />
+          Core features are designed to work without an internet connection.*
+        </article>
+      </div>
+
+      <p class="meta-note" style="margin-top:10px;">
+        *If Perfume Mixer uses any online services in future versions (for example,
+        cloud backup or AI suggestions), details will be clearly explained in the
+        in-app privacy notice and updated in the Privacy Policy.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>Privacy & data</h2>
+      <p>
+        Perfume Mixer is built with simplicity and privacy in mind. Your blends and
+        recipes stay on your device, unless a future version offers an optional
+        backup or sync feature that you explicitly enable.
+      </p>
+      <p style="margin-top:8px;">
+        For full details, please read our
+        <a href="privacy_policy.html">Privacy Policy</a>.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    &copy; <span id="year"></span> Scholarship. All rights reserved.
+    · <a href="privacy_policy.html">Privacy Policy</a>
+    · Contact: <a href="mailto:SUJITH81159@GMAIL.COM">SUJITH81159@GMAIL.COM</a>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
